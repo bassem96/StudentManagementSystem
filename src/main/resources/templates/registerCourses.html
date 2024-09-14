@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Courses</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+	<style>
+		.button-disabled {
+			background-color: #d3d3d3;
+			/* Light gray background */
+			border: 1px solid #a9a9a9;
+			/* Darker gray border */
+			color: #a9a9a9;
+			/* Darker gray text */
+			cursor: not-allowed;
+			/* Not allowed cursor */
+		}
+
+		.button-disabled:hover {
+			background-color: #d3d3d3;
+			/* Keep background gray on hover */
+		}
+	</style>
+</head>
+
+<body>
+
+	<h1>Courses List</h1>
+
+	<!-- Display success message after registration -->
+	<div th:if="${error}">
+		<p th:text="${error}" style="color: red;"></p>
+	</div>
+
+	<div th:if="${message}">
+		<p th:text="${message}" style="color: green;"></p>
+	</div>
+
+	<table border="1">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Course Name</th>
+				<th>Description</th>
+				<th>Register Action</th>
+				<th>cancel Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="course : ${courses}">
+				<td th:text="${course.id}"></td>
+				<td th:text="${course.name}"></td>
+				<td th:text="${course.description}"></td>
+				<td>
+					<form th:action="@{/api/process_registerCourses}" method="POST" style="display: inline-block;">
+						<input type="hidden" name="studentId" th:value="${student.id}" />
+						<!-- Replace with actual logged-in student ID -->
+						<input type="hidden" th:value="${course.id}" name="courseId" />
+						<button type="submit">Register</button>
+					</form>
+				</td>
+				<td>
+					<form th:action="@{/api/process_cancelCourses}" method="POST" style="display: inline-block;">
+                    <input type="hidden" name="studentId" th:value="${student.id}" />
+                    <input type="hidden" name="courseId" th:value="${course.id}" />
+                    <button type="submit">
+                        Cancel
+                    </button>
+                </form>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+
+</html>
