@@ -76,11 +76,7 @@ public class AppContoller {
 		return "signup";
 	}
 
-	// show sign up form
-	/*
-	 * @GetMapping("/registerUser") public String showRegistrationFormUser(Model
-	 * model) { model.addAttribute("user", new Role()); return "signUpUser"; }
-	 */
+
 
 	// actual register in DB for student
 	@PostMapping("/process_register")
@@ -102,18 +98,10 @@ public class AppContoller {
 		return "register_success"; // dummy success page for successful registration
 	}
 
-	// actual register in DB for user
-	/*
-	 * @PostMapping("/process_registerUser") public String
-	 * processRegister(@ModelAttribute Role user) { BCryptPasswordEncoder
-	 * passwordEncoder = new BCryptPasswordEncoder(); String encodedPassword =
-	 * passwordEncoder.encode(user.getPassword());
-	 * user.setPassword(encodedPassword); user.setEnabled(1);
-	 * theUserService.save(user);
-	 * 
-	 * return "register_success"; //dummy success page for successful registration }
-	 */
 
+	
+	/*uncomment this code to test the jwt generate token and refresh token*/
+/*
 	@PostMapping("/signin")
 	public ResponseEntity<AuthenticationResponse> signin(@RequestBody signInRequest signInRequest) {
 		System.out.println("ssss\n");
@@ -136,7 +124,9 @@ public class AppContoller {
 		return new ResponseEntity<>(authResponse, HttpStatus.OK);
 
 	}
-
+*/
+	
+	
 //	@PostMapping("/signin")
 //	public String signin(@RequestParam String username, @RequestParam String password, HttpServletRequest request,
 //			RedirectAttributes redirectAttributes) {

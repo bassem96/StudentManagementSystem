@@ -6,6 +6,9 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
 
+/*
+ * enable caching to use Redis caching
+ */
 @SpringBootApplication(scanBasePackages = "com.StudentManagement")
 @EnableCaching
 public class StudentManagementApplication extends SpringBootServletInitializer {

@@ -55,6 +55,7 @@ public class courseController {
 		pdfService = thePDFService;
 	}
 
+	//get all courses api, the first hit will fetch from DB and from redis otherwise
 	@GetMapping("/courses")
 	public String getAllCourses(Model model) {
 		List<Course> theCourses = courseservice.getAllCourses();
@@ -63,7 +64,8 @@ public class courseController {
 		// System.out.println("model"+model);
 		return "courses";
 	}
-
+	
+	//get registered courses for each student
 	@GetMapping("/RegisteredCourses")
 	public String getRegisteredCourses(Model model) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -77,6 +79,8 @@ public class courseController {
 		return "RegisteredCourses";
 	}
 
+	
+	// show all courses as a list to register and cancel 
 	@GetMapping("/registerCourses")
 	public String registerCourses(Model model) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -91,6 +95,7 @@ public class courseController {
 		return "registerCourses";
 	}
 
+	//actual registering course
 	@PostMapping("/process_registerCourses")
 	public String process_registerCourses(@RequestParam Long studentId, @RequestParam Long courseId,
 			RedirectAttributes redirectAttributes) {
@@ -105,7 +110,7 @@ public class courseController {
 			return "redirect:/api/registerCourses";
 		}
 	}
-
+	//actual canceling course
 	@PostMapping("/process_cancelCourses")
 	public String process_CancelCourses(@RequestParam Long studentId, @RequestParam Long courseId,
 			RedirectAttributes redirectAttributes) {
@@ -120,7 +125,8 @@ public class courseController {
 			return "redirect:/api/registerCourses";
 		}
 	}
-
+	
+	//generate course table as PDF
 	@GetMapping("/generateCourseSchedulePdf")
 	public ResponseEntity<ByteArrayResource> generateCourseSchedulePdf() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -135,6 +141,7 @@ public class courseController {
 				.contentType(MediaType.APPLICATION_PDF).contentLength(pdfBytes.length).body(resource);
 	}
 
+	//global handler
 	@ExceptionHandler
 	public ResponseEntity<StudentErrorResponse> handleException(Exception exc) {
 

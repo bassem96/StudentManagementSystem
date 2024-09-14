@@ -10,6 +10,7 @@ import com.StudentManagement.dao.CourseRepository;
 import com.StudentManagement.dao.StudentRepository;
 import com.StudentManagement.entity.Student;
 
+/*service layer responsible for student apis by injecting StudentRepository*/
 @Service
 public class studentServiceImpl implements studentService {
 

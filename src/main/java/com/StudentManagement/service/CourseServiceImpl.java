@@ -12,6 +12,8 @@ import com.StudentManagement.dao.StudentRepository;
 import com.StudentManagement.entity.Course;
 import com.StudentManagement.entity.Student;
 
+
+/*course service layer responsible for courses api by injecting CourseRepository and StudentRepository*/
 @Service
 public class CourseServiceImpl implements courseService {
 

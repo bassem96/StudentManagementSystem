@@ -59,6 +59,8 @@ public class securityConfig {
 		return new BCryptPasswordEncoder();
 	}
 
+	
+	/*SecurityFilterChain used for form authentication using basic authetication*/
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -72,6 +74,7 @@ public class securityConfig {
 		return http.build();
 	}
 
+	/*SecurityFilterChain used for jwt authentication*/
 //	@Bean
 //	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 //		System.out.println("in filterChain");

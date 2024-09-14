@@ -1,7 +1,7 @@
 package com.StudentManagement.dto;
 
 import lombok.Data;
-
+/*Response object to return token and refresh as a json object*/
 @Data
 public class AuthenticationResponse {
 	private String token;
